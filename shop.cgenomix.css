@@ -1,0 +1,18 @@
+.loop-product-availability:not(.in-stock),
+.available-on-backorder,
+.stock.available-on-backorder:before,
+.stock.in-stock:before {
+    color: orange !important;
+}
+.loop-product-availability.in-stock,
+.stock.in-stock.entry-product-stock,
+.stock.in-stock.entry-product-stock span.value,
+.stock.in-stock.entry-product-stock::before {
+    color: green !important;
+}
+.loop-product-availability.out-of-order {
+    color: red !important;
+}
+.page-search-popup > .inner {
+    transition: all 0s ease !important;
+}
