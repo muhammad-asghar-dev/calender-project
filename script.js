@@ -75,3 +75,48 @@ allProjects.forEach((project) => {
         }
     };
 });
+
+// Calenders
+
+const allYears = document.querySelectorAll(
+    ".calenders-container > .year-calender"
+);
+
+const yearNavigation = document.getElementById("year-navigation");
+const preYearBtn = yearNavigation.querySelector(".previous-year-btn");
+const nextYearBtn = yearNavigation.querySelector(".next-year-btn");
+const yearName = yearNavigation.querySelector(".year");
+
+allYears.forEach((year, yIndex) => {
+    const _yearName = year.querySelector(".year-name").textContent;
+    if (!yIndex == 0) {
+        year.classList.add("d-none");
+        yearName.textContent = _yearName;
+    }
+
+    const monthNavigator = year.querySelector("#month-navigator");
+    const monthName = monthNavigator.querySelector(".month");
+    const nextMonthBtn = monthNavigator.querySelector(".next-month-btn");
+    const preMonthBtn = monthNavigator.querySelector(".previous-month-btn");
+
+    const allMonths = year.querySelectorAll(".month-calender");
+
+    allMonths.forEach((month, mIndex) => {
+        let _monthName = month.querySelector(".month-name").textContent;
+        if (!mIndex == 0) {
+            month.classList.add("months-display-manage");
+            monthName.textContent = _monthName;
+        }
+    });
+});
+
+function nextYear() {
+    console.log("next year");
+}
+
+function previousYear() {
+    console.log("previous year");
+}
+
+preYearBtn.addEventListener("click", previousYear);
+nextYearBtn.addEventListener("click", nextYear);

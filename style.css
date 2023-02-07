@@ -15,7 +15,7 @@ body {
 /* Reusable Classes */
 .container {
     /* background-color: rgb(232, 207, 207); */
-    width: 1300px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -753,25 +753,32 @@ ul.proj-options > li > .options > ol.options li > a:hover,
     justify-content: space-between;
     padding: 0 60px 0 0;
 }
-.calender-options .year-navigator {
+.calender-options .year-navigator,
+.month-navigator {
     /* background-color: red; */
     display: flex;
     align-items: center;
     color: rgb(91, 91, 91);
 }
-.year-navigator .year {
+.year-navigator .year,
+.month-navigator .month {
     padding: 0 20px;
     font-size: 20px;
     font-weight: 500;
 }
-.year-navigator span {
+.year-navigator span,
+.month-navigator span {
     transition: all 0.3s ease;
     font-size: 25px;
     border-radius: 50%;
     cursor: pointer;
 }
-.year-navigator span:hover {
+.year-navigator span:hover,
+.month-navigator span:hover {
     color: var(--primary);
+}
+.month-navigator {
+    display: none;
 }
 .calender-options .working-hours-container {
     display: flex;
@@ -782,6 +789,9 @@ ul.proj-options > li > .options > ol.options li > a:hover,
     display: flex;
     text-align: center;
     align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary);
 }
 .working-hours-container .hours-category {
     /* background-color: pink; */
@@ -814,12 +824,6 @@ ul.proj-options > li > .options > ol.options li > a:hover,
 .working-hours-container .hours-category:nth-child(3) > div {
     background-color: orange;
 }
-.calender-options .year-name {
-    /* background-color: red; */
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--primary);
-}
 .right-sidebar-calenders-container {
     /* background-color: orange; */
     display: flex;
@@ -833,6 +837,7 @@ ul.proj-options > li > .options > ol.options li > a:hover,
     margin: 0 10px 0 0;
     overflow-y: scroll;
     max-height: calc(100vh - 210px);
+    padding: 0 10px 0 0;
 }
 .year-wise-calenders {
     background-color: brown;
@@ -862,6 +867,98 @@ ul.proj-options > li > .options > ol.options li > a:hover,
 }
 .right-sidebar > li > a:hover {
     background-color: rgb(233 233 233);
+}
+
+/* calender */
+.year-calender {
+    /* background-color: orange; */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    /* max-height: min-content; */
+    padding-top: 10px;
+}
+.year-calender .year-name {
+    background-color: pink;
+    display: none;
+}
+.year-calender .month-calender {
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-width: 300px;
+    /* background-color: pink; */
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgb(163, 162, 162);
+}
+.month-calender .month-name {
+    background-color: var(--primary);
+    color: white;
+    padding: 7px 0;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.month-calender .days-name {
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: inherit;
+}
+.month-calender .days-name span {
+    aspect-ratio: 1/0.9;
+    display: grid;
+    place-items: center;
+    font-size: 100%;
+    font-weight: 500;
+    color: rgb(102, 101, 101);
+    /* aspect-ratio: 1/1; */
+    /* border: 1px solid white; */
+}
+.month-calender .month-days {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    /* grid-template-rows: repeat(5, 199fr); */
+}
+.month-calender .month-days span {
+    /* aspect-ratio: 1/0.8; */
+    /* height: 149%; */
+    /* display: grid; */
+    /* place-items: center; */
+    /* background-color: red; */
+    /* background-color: gray; */
+    /* border: 1px solid white; */
+}
+.month-calender .month-days span:nth-child(1),
+.month-calender .month-days span:nth-child(7),
+.month-calender .month-days span:nth-child(8),
+.month-calender .month-days span:nth-child(14),
+.month-calender .month-days span:nth-child(15),
+.month-calender .month-days span:nth-child(21),
+.month-calender .month-days span:nth-child(22),
+.month-calender .month-days span:nth-child(28),
+.month-calender .month-days span:nth-child(29) {
+    /* border-color: gray; */
+    background-color: grey;
+}
+.month-calender .month-days span a {
+    font-weight: 500;
+    aspect-ratio: 1/0.95;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: rgb(104, 103, 103);
+    /* border: none !important; */
+    /* font-size: 15px; */
+}
+.month-calender .month-days span a:hover {
+    background-color: rgb(201, 201, 201);
+    /* border-color: rgb(201, 201, 201); */
 }
 .d-none {
     display: none !important;
@@ -931,5 +1028,75 @@ ul.proj-options > li > .options > ol.options li > a:hover,
     }
     .profile-alerts .header-profile {
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    .month-calender .month-days span {
+        /* aspect-ratio: 1/0.9; */
+        /* background-color: red; */
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .month-calender .month-days span {
+        /* aspect-ratio: 1/0.9; */
+        /* background-color: red; */
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .month-calender .month-days span a {
+        aspect-ratio: 1/0.9;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .month-calender .month-days span a {
+        aspect-ratio: 1/0.85;
+    }
+}
+@media screen and (max-width: 1330px) {
+    .month-calender .month-days span a {
+        aspect-ratio: 1/0.82;
+    }
+    .sidepanel-container {
+        min-width: 240px;
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .month-calender .month-days span a {
+        aspect-ratio: 1/0.8;
+    }
+    .month-calender .month-name {
+        font-size: 13px;
+        padding: 4px 0;
+    }
+}
+
+@media screen and (max-width: 1175px) {
+    .months-display-manage {
+        display: none;
+    }
+    .month-navigator {
+        display: flex;
+    }
+    .year-calender {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0 000 0;
+    }
+    .month-calender .month-name {
+        font-size: 16px;
+        padding: 6px 0;
+    }
+    .month-calender .month-days span a {
+        aspect-ratio: 1/1;
+        font-size: 14px;
+    }
+    .year-calender .month-calender {
+        width: 30%;
     }
 }
