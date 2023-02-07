@@ -318,6 +318,8 @@ body {
 .search-schedule > div {
     position: relative;
     margin: 0 10px 0 0;
+    display: flex;
+    align-items: center;
 }
 .search-schedule > div > input {
     width: 200px;
@@ -337,7 +339,7 @@ body {
 .search-schedule > div > span {
     position: absolute;
     font-size: 22px;
-    top: 2px;
+    /* top: 2px; */
     color: rgb(88, 88, 88);
     left: 3px;
 }
@@ -348,7 +350,7 @@ body {
     font-weight: 500;
     color: orange;
     border-radius: 3px;
-    padding: 3px;
+    padding: 5px;
     background: white;
     align-items: center;
     cursor: pointer;
@@ -368,25 +370,26 @@ body {
     height: calc(100vh - 158px);
     align-items: stretch;
     background-color: white;
-    padding-top: 3px;
+    padding-top: 6px;
 }
 
 .main-content-container {
-    width: 80%;
-    background-color: green;
+    width: 100%;
+    /* background-color: rgba(0, 128, 0, 0.386); */
     height: 100%;
-    margin: 0 100px;
+    /* margin: 0 100px; */
+    padding: 0 3px 0 20px;
 }
 
 /* Side Panel */
 .sidepanel-container {
-    width: 23%;
+    min-width: 280px;
     /* max-height: 100vh; */
     background-color: white;
     /* border: 1px solid rgb(176, 173, 173); */
     box-shadow: -1px 0px 4px grey;
     border-radius: 0 5px 5px 0;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 5px 10px 10px;
 }
 .sidepanel-container .sidepanel {
     height: 100%;
@@ -403,10 +406,10 @@ body {
 *::-webkit-scrollbar-track {
     width: 100%;
     border-radius: 10px;
-    background: rgba(156, 155, 155, 0.154);
+    background: rgba(0, 0, 255, 0.101);
 }
 *::-webkit-scrollbar-thumb {
-    background-color: rgb(201, 200, 200);
+    background-color: var(--primary);
     border-radius: 10px;
 }
 
@@ -738,7 +741,128 @@ ul.proj-options > li > .options > ol.options li > a:hover,
     display: none;
     /* background-color: red; */
 }
+/* ------------- */
 
+.calenders-container {
+    /* background-color: pink; */
+}
+
+.calender-options {
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 60px 0 0;
+}
+.calender-options .year-navigator {
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    color: rgb(91, 91, 91);
+}
+.year-navigator .year {
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.year-navigator span {
+    transition: all 0.3s ease;
+    font-size: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.year-navigator span:hover {
+    color: var(--primary);
+}
+.calender-options .working-hours-container {
+    display: flex;
+    /* background-color: orange; */
+    align-items: flex-end;
+}
+.calender-options .year-name {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.working-hours-container .hours-category {
+    /* background-color: pink; */
+    align-items: flex-end;
+    display: flex;
+    cursor: default;
+}
+
+.working-hours-container .hours-category > div {
+    width: 18px;
+    aspect-ratio: 1/1;
+    /* background-color: red; */
+    border: 1px solid rgb(191, 190, 190);
+    display: grid;
+    font-weight: 500;
+    color: rgb(0, 72, 255);
+    place-items: center;
+    margin: 0 3px 0 0px;
+    font-size: 10px;
+}
+.working-hours-container .hours-category:not(:last-child) {
+    margin: 0 10px 0 0;
+}
+.working-hours-container .hours-category > span {
+    font-size: 10px;
+}
+.working-hours-container .hours-category:nth-child(2) > div {
+    background-color: rgb(156, 154, 154);
+}
+.working-hours-container .hours-category:nth-child(3) > div {
+    background-color: orange;
+}
+.calender-options .year-name {
+    /* background-color: red; */
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary);
+}
+.right-sidebar-calenders-container {
+    /* background-color: orange; */
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0 00;
+}
+
+.calenders-actions {
+    /* background: red; */
+    width: 100%;
+    margin: 0 10px 0 0;
+    overflow-y: scroll;
+    max-height: calc(100vh - 210px);
+}
+.year-wise-calenders {
+    background-color: brown;
+}
+.right-sidebar-container .right-sidebar {
+    /* background-color: rgb(0, 255, 149); */
+}
+.right-sidebar-container {
+    /* background-color: rgb(0, 255, 229); */
+    border: 1px solid rgb(188, 186, 186);
+    padding: 0 5px;
+    border-radius: 3px 0 0 3px;
+}
+.right-sidebar > li {
+    margin: 5px 0;
+}
+.right-sidebar > li > a {
+    display: grid;
+    padding: 5px;
+    aspect-ratio: 1/1;
+    width: 35px;
+    place-items: center;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #5e5a5a;
+    transition: all 0.3s ease;
+}
+.right-sidebar > li > a:hover {
+    background-color: rgb(233 233 233);
+}
 .d-none {
     display: none !important;
 }

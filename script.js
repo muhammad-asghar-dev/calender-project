@@ -58,6 +58,7 @@ allProjects.forEach((project) => {
             allOptions.forEach((elem) => {
                 if (elem === options) {
                     options.classList.toggle("opened");
+                    closeAllSubOptions();
                 } else {
                     // elem.classList.remove("opened");
                 }
