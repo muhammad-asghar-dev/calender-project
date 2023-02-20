@@ -87,36 +87,117 @@ const preYearBtn = yearNavigation.querySelector(".previous-year-btn");
 const nextYearBtn = yearNavigation.querySelector(".next-year-btn");
 const yearName = yearNavigation.querySelector(".year");
 
+const monthNavigation = document.getElementById("month-navigator");
+const preMonthBtn = monthNavigation.querySelector(".previous-month-btn");
+const nextMonthBtn = monthNavigation.querySelector(".next-month-btn");
+const monthName = monthNavigation.querySelector(".month");
+
+let curYear = 0;
+let curMonth = 0;
+
+preYearBtn.disabled = true;
+preMonthBtn.disabled = true;
+
+if (!allYears[curYear + 1]) nextYearBtn.disabled = true;
+
 allYears.forEach((year, yIndex) => {
-    const _yearName = year.querySelector(".year-name").textContent;
-    if (!yIndex == 0) {
-        year.classList.add("d-none");
+    const allMonths = year.querySelectorAll(".month-calender");
+    if (yIndex === 0) {
+        const _yearName = year.querySelector(".year-name").textContent;
         yearName.textContent = _yearName;
+
+        const _monthName =
+            allMonths[0].querySelector(".month-name").textContent;
+        monthName.textContent = _monthName;
+    } else {
+        year.classList.add("d-none");
     }
 
-    const monthNavigator = year.querySelector("#month-navigator");
-    const monthName = monthNavigator.querySelector(".month");
-    const nextMonthBtn = monthNavigator.querySelector(".next-month-btn");
-    const preMonthBtn = monthNavigator.querySelector(".previous-month-btn");
-
-    const allMonths = year.querySelectorAll(".month-calender");
+    year.querySelector(".year-name").classList.add("d-none");
 
     allMonths.forEach((month, mIndex) => {
-        let _monthName = month.querySelector(".month-name").textContent;
-        if (!mIndex == 0) {
-            month.classList.add("months-display-manage");
-            monthName.textContent = _monthName;
-        }
+        if (!mIndex == 0) month.classList.add("months-display-manage");
     });
 });
 
-function nextYear() {
-    console.log("next year");
+function navigateYear(action) {
+    const isNext = action === "N" ? true : false;
+
+    curMonth = 0;
+    allYears.forEach((year, index) => {
+        const allMonths = year.querySelectorAll(".month-calender");
+        for (let i = 0; i < allMonths.length; i++) {
+            const month = allMonths[i];
+            if (i == 0) {
+                month.classList.remove("months-display-manage");
+            } else {
+                if (!month.classList.contains("months-display-manage"))
+                    month.classList.add("months-display-manage");
+            }
+        }
+        if (index === curYear) {
+            const _monthName = year.querySelector(".month-name").textContent;
+            monthName.textContent = _monthName;
+        }
+    });
+    preMonthBtn.disabled = true;
+    nextMonthBtn.disabled = false;
+
+    for (let i = 0; i < allYears.length; i++) {
+        if (i === curYear) {
+            const cY = allYears[i];
+            cY.classList.add("d-none");
+
+            const nY = allYears[isNext ? i + 1 : i - 1];
+            nY.classList.remove("d-none");
+
+            const _yearName = nY.querySelector(".year-name").textContent;
+            yearName.textContent = _yearName;
+
+            if (isNext) {
+                if (!allYears[i + 2]) nextYearBtn.disabled = true;
+                preYearBtn.disabled = false;
+                curYear++;
+            } else {
+                if (!allYears[i - 2]) preYearBtn.disabled = true;
+                nextYearBtn.disabled = false;
+                curYear--;
+            }
+            break;
+        }
+    }
 }
 
-function previousYear() {
-    console.log("previous year");
+function navigateMonth(action) {
+    const isNext = action === "N" ? true : false;
+    const cYear = allYears[curYear];
+    const allMonths = cYear.querySelectorAll(".month-calender");
+
+    const month = allMonths[curMonth];
+    if (!month.classList.contains("months-display-manage")) {
+        month.classList.add("months-display-manage");
+
+        const cM = allMonths[isNext ? curMonth + 1 : curMonth - 1];
+
+        cM.classList.remove("months-display-manage");
+
+        const _monthName = cM.querySelector(".month-name").textContent;
+        monthName.textContent = _monthName;
+
+        if (isNext) {
+            if (!allMonths[curMonth + 2]) nextMonthBtn.disabled = true;
+            preMonthBtn.disabled = false;
+            curMonth++;
+        } else {
+            if (!allMonths[curMonth - 2]) preMonthBtn.disabled = true;
+            nextMonthBtn.disabled = false;
+            curMonth--;
+        }
+    }
 }
 
-preYearBtn.addEventListener("click", previousYear);
-nextYearBtn.addEventListener("click", nextYear);
+preYearBtn.addEventListener("click", () => navigateYear("P"));
+nextYearBtn.addEventListener("click", () => navigateYear("N"));
+
+preMonthBtn.addEventListener("click", () => navigateMonth("P"));
+nextMonthBtn.addEventListener("click", () => navigateMonth("N"));
